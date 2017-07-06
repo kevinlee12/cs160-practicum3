@@ -3,7 +3,22 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     get "home"
+    get "two"
+    get "three"
+    get "four"
+    get "five"
+    get "six"
+    get "seven"
+    get "eight"
+    get "nine"
+    get "ten"
+    get "eleven"
+    get "twelve"
+    get "thirteen"
+    get "fourteen"
+    get "fifteen"
   end
+
   namespace :v2 do
     get "home"
     get "instadesktop"

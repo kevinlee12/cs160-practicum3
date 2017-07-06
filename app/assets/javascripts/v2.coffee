@@ -13,4 +13,4 @@ handleOrientation = ->
     synth = window.speechSynthesis
     voices = synth.getVoices()
     synth.speak utterance 
-    Navigator.vibrate [200, 200, 200] 
+    window.navigator.vibrate [200, 200, 200] 

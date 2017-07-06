@@ -2,10 +2,31 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-    $("#sevenFourONine").click () ->
-        location.href = "?screen=7409" 
-        console.log "7409 button clicked"
+    $("#seven").click () ->
+        location.href = "seven" 
+    
+    $("#eight").click () ->
+        location.href = "eight" 
         
-    $("#sevenFourOFive").click () ->
-        location.href = "?screen=7405"
-        console.log "7405 button clicked" 
+    $("#nine").click () ->
+        location.href = "nine"
+    
+    $("#ten").click () ->
+        location.href = "ten"
+    
+    $("#eleven").click () ->
+        location.href = "eleven"
+    
+    $("#twelve").click () ->
+        location.href = "twelve"
+    
+    $("#thirteen").click () ->
+        location.href = "thirteen"
+    
+    $("#fourteen").click () ->
+        location.href = "fourteen"
+    
+    $("#fifteen").click () ->
+        location.href = "fifteen"
+        
+        
