@@ -1,10 +1,77 @@
 :coffeescript
     $ ->
-        console.warn "IS HAMMER INSTALLED?", Hammer
-    
+        square = $('#touch-square')[0]
+
+        mc = Hammer square
+        
+        mc.get('pinch').set
+            enable: true
+        mc.get('rotate').set
+            enable: true
+
+        mc.on 'pinch', (ev) ->
+            console.log 'pinch'
+            ev.preventDefault()
+
+        mc.on 'tap', (ev) ->
+            console.log 'tap'
+            ev.preventDefault()
+            $('#touch-square').animate {
+                width: '100px'
+                height: '100px'
+            },
+                duration: 100
+                done: ->
+                    $('#touch-square').animate {
+                        width: '150px'
+                        height: '150px'
+                    }, 100
+                    return
+            
+
+        mc.on 'rotate', (ev) ->
+            ev.preventDefault()
+            squ = $('#touch-square')
+            squ.css("transform", "rotate(" + ev.angle + "deg)")
+            setTimeout -> 
+                squ.css("transform", "rotate(0)")
+                return
+            , 1000
+            
+
+        mc.on 'press', (ev) ->
+            console.log 'press'
+            ev.preventDefault()
+            squ = $('#touch-square')
+            if squ.css('background-color') == 'rgb(255, 0, 0)'
+                squ.css('background-color', 'blue')
+            else if squ.css('background-color') == 'rgb(0, 0, 255)'
+                squ.css('background-color', 'white')
+            else
+                squ.css('background-color', 'red')
+
+        mc.on 'pan', (ev) ->
+            console.log 'pan'
+            
+        mc.on 'swipe', (ev) ->
+            console.log 'swipe'
+            ev.preventDefault()
+            console.log ev
+            
+            leftPos = $('#touch-square').position().left
+            console.log leftPos + ev.deltaX
+            $('#touch-square').animate {
+                left: (leftPos + ev.deltaX) + 'px'
+            },
+                duration: 1000
+                done: ->
+                    $('#touch-square').animate {
+                        left: leftPos + 'px'
+                    }, 1000
+                    return
+            
 #touchpad
     #touch-square
-    %h2 TOUCH ME!
     
 // IGNORE, BUT KEEP THIS LINE (Back button)   
 = render :partial => "application/back_to_root"
@@ -13,6 +80,7 @@
     $touchpad-bg: desaturate(green, 70%);
     $touch-square: lighten($touchpad-bg, 70%);
     #touchpad{
+        position: relative;
         height: 100%;
         width: 100%;
         color: white;
@@ -26,6 +94,9 @@
         align-items: center;
         flex-direction: column;
         #touch-square{
+            position: absolute;
+            left: 40%;
+            top: 40%;
             width: 150px;
             height: 150px;
             background: $touch-square;
