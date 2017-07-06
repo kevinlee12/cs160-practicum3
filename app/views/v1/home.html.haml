@@ -1,0 +1,41 @@
+- case @screen
+    - when '7418'
+        %a{href: "?screen=7422"}
+            %img{src: "/v1_screens/7418_f.jpg"}
+    - when '7422'
+        %a{href: "?screen=7421"}
+            %img{src: "/v1_screens/7422_f.jpg"}
+    - when '7421'
+        %a{href: "?screen=7420"}
+            %img{src: "/v1_screens/7421_f.jpg"}
+    - when '7420'
+        %a{href: "?screen=7423"}
+            %img{src: "/v1_screens/7420_f.jpg"}
+    - when '7423'
+        %a{href: "?screen=7410"}
+            %img{src: "/v1_screens/7423_f.jpg"}
+    - when '7410'
+        // This is where things get interesting
+        %img{src: "/v1_screens/7410_f.jpg"}
+        %div{id: "sevenFourONine", class: "top"}
+        %div{id: "sevenFourOFive", class: "bottom"}
+    - when '7409'
+        %img{src: "/v1_screens/7409_f.jpg"}
+        %div
+        %div
+    - when '7405'
+        %img{src: "v1_screens/7405_f.jpg"}
+        %div
+        %div 
+    - else
+        // Home screen
+        %a{href: "?screen=7418"}
+            %img{src: "/v1_screens/7419_f.jpg"}
+
+
+
+
+
+
+// IGNORE, BUT KEEP THIS LINE (Back button)   
+= render partial: "application/back_to_root"

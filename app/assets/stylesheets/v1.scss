@@ -1,0 +1,22 @@
+// Place all the styles related to the v1 controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 50%;
+}
+
+.bottom {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+}
