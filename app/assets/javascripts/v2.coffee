@@ -11,6 +11,7 @@ speak = ->
     utterance = new SpeechSynthesisUtterance "Leave me alone!!!"
     synth.speak utterance 
     window.navigator.vibrate [200, 200, 200] 
+    $('#being').toggleClass('shake')
     return
 
 handleOrientation = (event) ->

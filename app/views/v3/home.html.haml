@@ -1,8 +1,13 @@
 :coffeescript
     $ ->
+        pinch = new Hammer.Pinch()
+        rotate = new Hammer.Rotate()
+        pinch.recognizeWith(rotate)
+
         square = $('#touch-square')[0]
 
         mc = Hammer square
+        mc.add [pinch, rotate]
         
         mc.get('pinch').set
             enable: true
@@ -12,6 +17,15 @@
         mc.on 'pinch', (ev) ->
             console.log 'pinch'
             ev.preventDefault()
+            console.log ev
+            $('#touch-square').css 'transform', 'scale(' + ev.scale + ')'
+        
+        mc.on 'pinch rotate', (ev) ->
+            ev.preventDefault()
+            console.log ev
+            $('#touch-square').css 
+                '-webkit-transform': 'scale(' + ev.scale + ') rotate(' + ev.angle + 'deg)'
+                'transform': 'scale(' + ev.scale + ') rotate(' + ev.angle + 'deg)'
         
         mc.on 'tap', (ev) ->
             console.log 'tap'
@@ -32,12 +46,7 @@
         mc.on 'rotate', (ev) ->
             ev.preventDefault()
             squ = $('#touch-square')
-            squ.css("transform", "rotate(" + ev.angle + "deg)")
-            setTimeout -> 
-                squ.css("transform", "rotate(0)")
-                return
-            , 1000
-            
+            squ.css 'transform', 'rotate(' + ev.angle + 'deg)'
 
         mc.on 'press', (ev) ->
             console.log 'press'
@@ -53,20 +62,23 @@
         mc.on 'pan', (ev) ->
             console.log 'pan'
             
+            $('#touch-square').css
+                left: (ev.center.x) + 'px'
+                top: (ev.center.y) + 'px'
+            
         mc.on 'swipe', (ev) ->
             console.log 'swipe'
             ev.preventDefault()
-            console.log ev
             
-            leftPos = $('#touch-square').position().left
-            console.log leftPos + ev.deltaX
             $('#touch-square').animate {
-                left: (leftPos + ev.deltaX) + 'px'
+                left: (ev.center.x + ev.deltaX) + 'px'
+                top: (ev.center.y + ev.deltaY) + 'px'
             },
                 duration: 1000
                 done: ->
                     $('#touch-square').animate {
-                        left: leftPos + 'px'
+                        left: ev.center.x  + 'px'
+                        top: ev.center.y + 'px'
                     }, 1000
                     return
             
