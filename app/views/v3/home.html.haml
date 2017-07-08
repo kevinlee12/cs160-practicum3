@@ -5,7 +5,8 @@
         pinch.recognizeWith(rotate)
 
         square = $('#touch-square')[0]
-
+        
+        
         mc = Hammer square
         mc.add [pinch, rotate]
         
@@ -17,12 +18,10 @@
         mc.on 'pinch', (ev) ->
             console.log 'pinch'
             ev.preventDefault()
-            console.log ev
             $('#touch-square').css 'transform', 'scale(' + ev.scale + ')'
         
         mc.on 'pinch rotate', (ev) ->
             ev.preventDefault()
-            console.log ev
             $('#touch-square').css 
                 '-webkit-transform': 'scale(' + ev.scale + ') rotate(' + ev.angle + 'deg)'
                 'transform': 'scale(' + ev.scale + ') rotate(' + ev.angle + 'deg)'
@@ -44,9 +43,10 @@
             
 
         mc.on 'rotate', (ev) ->
+            console.log 'rotate'
             ev.preventDefault()
             squ = $('#touch-square')
-            squ.css 'transform', 'rotate(' + ev.angle + 'deg)'
+            squ.css 'transform', 'rotate(' + ev.rotation + 'deg)'
 
         mc.on 'press', (ev) ->
             console.log 'press'
@@ -69,7 +69,7 @@
         mc.on 'swipe', (ev) ->
             console.log 'swipe'
             ev.preventDefault()
-            
+        
             $('#touch-square').animate {
                 left: (ev.center.x + ev.deltaX) + 'px'
                 top: (ev.center.y + ev.deltaY) + 'px'

@@ -10,7 +10,7 @@ class V4Controller < ApplicationController
       config.access_token        = "883417707013472256-pGxa9RpFZVfQMDvWACbgE1LiOg8hJyT"
       config.access_token_secret = "dsC6U7v1TZd5HJnAAKTxLJzUNfDueHVM7eTnFQHo25p4i"
     end
-    @tweets = client.search("to:YosemiteNPS traffic", result_type: "recent").take(3).collect
+    @tweets = client.search("to:YosemiteNPS snow", result_type: "recent").take(3).collect
   end
   def twilio
   end

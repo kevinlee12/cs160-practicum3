@@ -27,7 +27,7 @@ handleOrientation = (event) ->
     window.alpha = event.alpha
     window.beta = event.beta
     window.gamma = event.gamma
-    if difference > 45
+    if difference > 90
         $('#alone').show()
         $('#being').toggleClass('shake')
         speak()
@@ -42,6 +42,9 @@ $ ->
     $('#alone').click ->
         speak()
         return
+    window.alpha = 0
+    window.beta = 0
+    window.gamma = 0
 
     if location.pathname == "/v2/instadesktop"
         console.log "Instadesktop!"
