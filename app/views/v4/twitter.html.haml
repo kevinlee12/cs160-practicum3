@@ -8,15 +8,11 @@
         %h4 
             %em Tweets from YosemiteNPS
         %hr
-        %p.lead
-            We're celebrating the Fourth of July national-park style... hanging out in the park! Thank you to those who joined us for the flag ceremony!
-        %hr  
-        %p.lead
-            We're celebrating the Fourth of July national-park style... hanging out in the park! Thank you to those who joined us for the flag ceremony!
-        %hr  
-        %p.lead
-            We're celebrating the Fourth of July national-park style... hanging out in the park! Thank you to those who joined us for the flag ceremony!
-        %hr 
+        
+        - @tweets.each do |tweet|
+            %p.lead = "#{tweet.text}"
+            %hr
+             
 :scss
     #back-button{
         margin-right: 10px;
