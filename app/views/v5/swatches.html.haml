@@ -1,6 +1,64 @@
 .flexbox-container
-    .flex-block
-    .flex-block
-    .flex-block
-    .flex-block
-    .flex-block
+    .flex-block#one
+    .flex-block#two
+    .flex-block#three
+    .flex-block#four
+    .flex-block#five
+    .flex-block#six
+    .flex-block#seven
+    .flex-block#eight
+    .flex-block#nine
+    .flex-block#ten
+
+:scss
+    $base: red;
+    $complement: complement($base);
+
+    .flexbox-container {
+        background: white;
+        display: flex;
+        flex-wrap: wrap; 
+        align-content: center; 
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+    
+    #one {
+        background-color: $base; 
+    }
+    
+    #two {
+        background-color: $complement; 
+    }
+    
+    #three {
+        background-color: mix($base, $complement, 30%);
+    }
+    
+    #four {
+        background-color: mix($complement, $base, 30%);
+    }
+    
+    #five {
+        background-color: lighten($base, 40%)
+    }
+    
+    #six {
+        background-color: $base;
+    }
+    
+    #seven {
+        background-color: darken($base, 25%);
+    }
+    
+    #eight {
+        background-color: lighten($complement, 40%)
+    }
+    
+    #nine {
+        background-color: $complement;
+    }
+    
+    #ten {
+        background-color: darken($complement, 25%);
+    }

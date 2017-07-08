@@ -2,11 +2,134 @@
     $ ->
         Utility.paperSetup "paperCanvas" 
         c = new paper.Path.Circle
-            radius: 40
-            fillColor: "#00A8E1"
+            radius: 175
+            strokeColor: "black"
             position: paper.view.center
+            strokeWidth: 2
+        
+        northSouth = new paper.Path.Line
+            from: new Point paper.view.center.x, paper.view.center.y - 250
+            to: new Point paper.view.center.x, paper.view.center.y + 250
+            strokeColor: 'black'
+            strokeWidth: 2
+        eastWest = new paper.Path.Line
+            from: new Point paper.view.center.x - 250, paper.view.center.y
+            to: new Point paper.view.center.x + 250, paper.view.center.y
+            strokeColor: 'black'
+            strokeWidth: 2
+        
+        amount = 9
+        length = c.length / 4
+        
+        # First quad 10 degrees
+        for i in [0...amount]
+            offset = (i / amount * length) + length
+            
+            point = c.getPointAt(offset)
+          
+            normal = c.getNormalAt(offset).multiply(75) 
 
+            line = new paper.Path
+                segments: [
+                    point
+                    point.add(normal) 
+                ]
+                strokeColor: 'black'
+                strokeWidth: 2
+            
+            point.x -= 7
+            quadOneDegree = new PointText
+                point: point.add(c.getNormalAt(offset).multiply(100))
+                content: i * 10 + '°'
+                fontFamily: 'Verdana'
+                fillColor: 'black'
+                fontSize: 20
+        
+        quadOneDegree = new PointText
+                point: new Point paper.view.center.x + 270, paper.view.center.y
+                content: '90°'
+                fontFamily: 'Verdana'
+                fillColor: 'black'
+                fontSize: 20
+        
+        quadThreeDegree = new PointText
+                point: new Point paper.view.center.x - 300, paper.view.center.y
+                content: '90°'
+                fontFamily: 'Verdana'
+                fillColor: 'black'
+                fontSize: 20
+        
+        # First quad 5 degrees
+        amountFive = 18
+        for i in [0...amountFive]
+            offset = (i / amountFive * length) + length 
+            
+            point = c.getPointAt(offset)
+            normal = c.getNormalAt(offset).multiply(50)
+            
+            line = new paper.Path
+                segments : [
+                    point
+                    point.add(normal)
+                ]
+                strokeColor: "black"
+       
+        # First quad 1 degree
+        amountOne = 90
+        for i in [0...amountOne]
+            offset = (i / amountOne * length) + length 
+            
+            point = c.getPointAt(offset)
+            normal = c.getNormalAt(offset)
+            
+            line = new paper.Path
+                segments : [
+                    point.add(normal.multiply(43))
+                    point.add(normal.multiply(50))
+                ]
+                strokeColor: "black"
+        
+        # Fourth quad 10 degrees 
+        for i in [0...amount]
+            offset = (i / amount * length) + (length*3) 
+            
+            point = c.getPointAt(offset)
+          
+            normal = c.getNormalAt(offset).multiply(75) 
 
+            line = new paper.Path
+                segments: [
+                    point
+                    point.add(normal) 
+                ]
+                strokeColor: 'black'
+                strokeWidth: 2
+            
+            
+            point.x -= 7
+            quadOneDegree = new PointText
+                point: point.add(c.getNormalAt(offset).multiply(120))
+                content: i * 10 + '°'
+                fontFamily: 'Verdana'
+                fillColor: 'black'
+                fontSize: 20
+                
+        
+        # Fourth quad 5 degrees 
+        for i in [0...amountFive]
+            offset = (i / amountFive * length) + (length*3) 
+            
+            point = c.getPointAt(offset)
+            normal = c.getNormalAt(offset)
+            
+            line = new paper.Path
+                segments : [
+                    point.add(normal.multiply(50))
+                    point.add(normal.multiply(75))
+                ]
+                strokeColor: "black"
+
+        
 %canvas#paperCanvas
 
 // IGNORE, BUT KEEP THIS LINE (Back button)   
